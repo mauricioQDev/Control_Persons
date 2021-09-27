@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Initiation</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="container">
+        <header th:replace="layout/template :: header"/>
+
+        <div class="mt-4">
+            <a th:href="@{/add}" class="btn btn-primary">[[#{person.create}]]</a>
+        </div>
+
+        <div th:if="${persons != null and !persons.empty}">
+            <table class="table">
+                <tr>
+                    <th scope="col">[[#{person.name}]]</th>
+                    <th scope="col">[[#{person.identification}]]</th>
+                    <th scope="col">[[#{person.age}]]</th>
+                    <th scope="col">[[#{person.email}]]</th>
+                    <th scope="col">[[#{action.edit}]]</th>
+                    <th scope="col">[[#{action.delete}]]</th>
+                </tr>
+                <tr th:each="person : ${persons}">
+                    <td th:text="${person.name}"></td>
+                    <td th:text="${person.identification}"></td>
+                    <td th:text="${person.age}"></td>
+                    <td th:text="${person.email}"></td>
+                    <td><a th:href="@{/edit/} + ${person.idPerson}"><i class="fas fa-edit"></i></a></td>
+                    <td><a th:href="@{/delete/}+ ${person.idPerson}"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${persons == null or persons.empty}">
+            <p>[[#{action.delete}]]</p>
+        </div>
+        <footer th:replace="layout/template :: footer"/>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/4afc3ea24a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+</html>

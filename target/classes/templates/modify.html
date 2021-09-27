@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>[[#{template.title}]]</title>
+    <meta charset="UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+
+        <header th:replace="layout/template :: header"/>
+        <a th:href="@{/}">[[#{action.return}]]</a>
+
+        <h2 class="mt-4">[[#{person.create}]]</h2>
+        <form th:action="@{/save}" method="post" th:object="${person}">
+            <input type="hidden" name="idPerson" th:field="*{idPerson}"/>
+            <div class="mb-3">
+                <label for="name">[[#{person.name}]]:</label>
+                <input type="text" name="name" th:field="*{name}" class="form-control" th:errorclass="is-invalid"/>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="identification">[[#{person.identification}]]:</label>
+                <input type="text" name="identification" th:field="*{identification}" class="form-control"
+                       th:errorclass="is-invalid"/>
+                <div th:if="${#fields.hasErrors('identification')}"
+                     th:errors="*{identification}" class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="age">[[#{person.age}]]:</label>
+                <input type="text" name="age" th:field="*{age}" class="form-control" th:errorclass="is-invalid"/>
+                <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+                <label for="email">[[#{person.email}]]:</label>
+                <input type="text" name="email" th:field="*{email}" class="form-control" th:errorclass="is-invalid"/>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
+            </div>
+
+            <div class="text-end">
+                <button class="btn btn-primary">[[#{action.save}]]</button>
+                <a href="/" class="btn btn-light ms-2">[[#{action.cancel}]]</a>
+            </div>
+        </form>
+        <footer th:replace="layout/template :: footer"/>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/4afc3ea24a.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+</html>

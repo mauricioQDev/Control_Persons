@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+</head>
+<body>
+<header th:fragment="header">
+    <h1 th:text="#{template.title}" class="text-uppercase mt-4"></h1>
+</header>
+<footer th:fragment="footer">
+    <div>
+        <br>
+        <a th:href="@{/(lang=es)}">ES</a> |
+        <a th:href="@{/(lang=en)}">EN</a> |
+
+    </div>
+    <span th:text="#{tempalte.footer}"></span>
+</footer>
+
+</body>
+</html>
